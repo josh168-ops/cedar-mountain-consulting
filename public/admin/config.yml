@@ -1,0 +1,73 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/images
+public_folder: /images
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: pages
+    label: Pages
+    files:
+      - name: home
+        label: Home
+        file: src/content/pages/home.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Body, name: body, widget: markdown }
+
+      - name: about-us
+        label: About Us
+        file: src/content/pages/about-us.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Body, name: body, widget: markdown }
+
+      - name: services
+        label: Services
+        file: src/content/pages/services.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Body, name: body, widget: markdown }
+
+      - name: contact
+        label: Contact
+        file: src/content/pages/contact.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Body, name: body, widget: markdown }
+
+      - name: privacy-policy
+        label: Privacy Policy
+        file: src/content/pages/privacy-policy.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Body, name: body, widget: markdown }
+
+      - name: terms-of-use
+        label: Terms of Use
+        file: src/content/pages/terms-of-use.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Body, name: body, widget: markdown }
+
+  - name: team
+    label: Leadership Team
+    folder: src/content/team
+    create: true
+    slug: "{{fields.order}}-{{slug}}"
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Title, name: title, widget: string }
+      - { label: Order, name: order, widget: number, value_type: int }
+      - { label: Education, name: education, widget: string, required: false }
+      - { label: Languages, name: languages, widget: string, required: false }
+      - { label: Bio, name: body, widget: markdown }

@@ -1,0 +1,66 @@
+---
+const navLinks = [
+  { href: '/',                    label: 'Home' },
+  { href: '/about-us',            label: 'About Us' },
+  { href: '/our-leadership-team', label: 'Our Leadership Team' },
+  { href: '/services',            label: 'Services' },
+  { href: '/contact',             label: 'Contact' },
+];
+
+const current = Astro.url.pathname;
+---
+
+<header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+  <nav class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 shrink-0">
+      <span class="text-cedar-800 font-semibold text-lg tracking-tight">Cedar Mountain Consulting</span>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden md:flex items-center gap-6">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class={`text-sm font-medium transition-colors ${
+              current === href || (href !== '/' && current.startsWith(href))
+                ? 'text-cedar-800'
+                : 'text-gray-600 hover:text-cedar-800'
+            }`}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="menu-toggle"
+      class="md:hidden p-2 text-gray-600 hover:text-cedar-800"
+      aria-label="Toggle menu"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white">
+    <ul class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a href={href} class="block text-sm font-medium text-gray-700 hover:text-cedar-800">{label}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

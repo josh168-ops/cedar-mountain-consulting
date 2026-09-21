@@ -1,0 +1,88 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const page = await getEntry('pages', 'home');
+const { Content } = await page.render();
+---
+
+<Layout title="Cedar Mountain Consulting" description={page.data.description}>
+
+  <!-- Hero -->
+  <section class="bg-cedar-800 text-white">
+    <div class="max-w-6xl mx-auto px-6 py-24 md:py-32">
+      <div class="max-w-2xl">
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+          Compliance Built for Your Business
+        </h1>
+        <p class="text-cedar-100 text-lg md:text-xl leading-relaxed mb-8">
+          Cedar Mountain Consulting provides tailored, outcome-driven compliance solutions for private fund managers, business development companies, and multi-family offices.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/services" class="bg-white text-cedar-800 font-semibold px-6 py-3 rounded hover:bg-cedar-50 transition-colors">
+            Find Out More
+          </a>
+          <a href="/about-us" class="border border-cedar-300 text-white font-semibold px-6 py-3 rounded hover:bg-cedar-700 transition-colors">
+            About Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who We Serve -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">Who We Serve</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {['Private Funds', 'Business Development Companies', 'Multi-Family Offices'].map(client => (
+          <div class="bg-white rounded-lg p-6 border border-gray-200 text-center">
+            <div class="w-10 h-10 bg-cedar-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-5 h-5 text-cedar-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+              </svg>
+            </div>
+            <p class="font-semibold text-gray-800">{client}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Services -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">What We Do</h2>
+      <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+        We simplify complicated regulations into actionable business steps that mitigate risk while enabling expansion.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { title: 'Compliance Program Support', desc: 'Build and maintain robust compliance infrastructures tailored to your operations.', href: '/services' },
+          { title: 'Outsourced CCO Services', desc: 'Senior-level compliance leadership with full team support, without the full-time overhead.', href: '/services' },
+          { title: 'SEC Exam Support', desc: 'Preparation, mock audits, gap assessments, and real-time exam assistance.', href: '/services' },
+        ].map(({ title, desc, href }) => (
+          <div class="border border-gray-200 rounded-lg p-6 hover:border-cedar-300 transition-colors group">
+            <h3 class="font-semibold text-gray-900 mb-3 group-hover:text-cedar-800 transition-colors">{title}</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">{desc}</p>
+            <a href={href} class="text-cedar-700 text-sm font-medium hover:text-cedar-900">Learn more →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-cedar-50 border-t border-cedar-100 py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Ready to get started?</h2>
+      <p class="text-gray-600 mb-8 max-w-xl mx-auto">
+        Let us help you build a compliance program that works for your business — not just your regulator.
+      </p>
+      <a href="/contact" class="bg-cedar-800 text-white font-semibold px-8 py-3 rounded hover:bg-cedar-700 transition-colors">
+        Contact Us
+      </a>
+    </div>
+  </section>
+
+</Layout>

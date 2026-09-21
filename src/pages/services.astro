@@ -1,0 +1,33 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const page = await getEntry('pages', 'services');
+const { Content } = await page.render();
+---
+
+<Layout title={page.data.title} description={page.data.description}>
+  <div class="bg-cedar-800 text-white py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h1 class="text-4xl font-bold">{page.data.title}</h1>
+      <p class="text-cedar-100 mt-4 max-w-xl">
+        Comprehensive compliance support for private fund managers, BDCs, and multi-family offices.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    <div class="max-w-3xl prose prose-gray prose-headings:font-bold prose-headings:text-gray-900 prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-gray-200 prose-h2:pb-3 prose-p:text-gray-600 prose-p:leading-relaxed">
+      <Content />
+    </div>
+  </div>
+
+  <div class="bg-cedar-50 border-t border-cedar-100 py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Ready to work together?</h2>
+      <a href="/contact" class="bg-cedar-800 text-white font-semibold px-8 py-3 rounded hover:bg-cedar-700 transition-colors inline-block">
+        Contact Us
+      </a>
+    </div>
+  </div>
+</Layout>

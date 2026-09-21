@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const members = (await getCollection('team')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<Layout title="Our Leadership Team" description="Meet the experienced team behind Cedar Mountain Consulting.">
+  <div class="bg-cedar-800 text-white py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h1 class="text-4xl font-bold">Our Leadership Team</h1>
+      <p class="text-cedar-100 mt-4 max-w-xl">
+        Our team brings decades of in-house and regulatory experience across private funds, investment management, and financial services law.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {members.map(async (member) => {
+        const { Content } = await member.render();
+        return (
+          <div class="border border-gray-200 rounded-lg p-6 hover:border-cedar-300 transition-colors">
+            <div class="mb-4">
+              <h2 class="text-xl font-bold text-gray-900">{member.data.name}</h2>
+              <p class="text-cedar-700 font-medium text-sm mt-0.5">{member.data.title}</p>
+            </div>
+            <div class="prose prose-sm prose-gray prose-p:text-gray-600 prose-p:leading-relaxed">
+              <Content />
+            </div>
+            {member.data.education && (
+              <p class="mt-4 text-xs text-gray-500 leading-relaxed">
+                <span class="font-medium text-gray-700">Education: </span>{member.data.education}
+              </p>
+            )}
+            {member.data.languages && (
+              <p class="mt-1 text-xs text-gray-500">
+                <span class="font-medium text-gray-700">Languages: </span>{member.data.languages}
+              </p>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</Layout>

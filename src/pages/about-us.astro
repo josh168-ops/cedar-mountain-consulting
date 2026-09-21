@@ -1,0 +1,21 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const page = await getEntry('pages', 'about-us');
+const { Content } = await page.render();
+---
+
+<Layout title={page.data.title} description={page.data.description}>
+  <div class="bg-cedar-800 text-white py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h1 class="text-4xl font-bold">{page.data.title}</h1>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    <div class="max-w-3xl prose prose-gray prose-headings:font-bold prose-headings:text-gray-900 prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-strong:text-gray-800 prose-p:text-gray-600 prose-p:leading-relaxed">
+      <Content />
+    </div>
+  </div>
+</Layout>
