@@ -1,0 +1,131 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const articles = (await getCollection('thoughtLeadership')).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+const categories = [...new Set(articles.map((article) => article.data.category))].sort();
+---
+
+<Layout
+  title="Thought Leadership"
+  description="Practical perspectives on regulatory developments and compliance for investment advisers and private fund managers."
+>
+  <section class="relative overflow-hidden bg-[#102b15]">
+    <img src="/images/hero-mountain.jpg" alt="Mountain landscape" class="absolute inset-0 h-full w-full object-cover opacity-45" />
+    <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,43,21,0.9),rgba(16,43,21,0.65))]"></div>
+    <div class="relative mx-auto max-w-7xl px-6 py-16 lg:py-20">
+      <h1 class="text-4xl font-bold leading-tight text-white md:text-5xl">Research and Perspectives</h1>
+      <p class="mt-5 max-w-2xl text-lg leading-8 text-white/85">
+        Practical perspectives on regulatory developments and the work of building durable compliance programs.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[#f7f9f7] py-14 md:py-18">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="mb-8 flex flex-col gap-5 border-b border-[#dfe7df] pb-6 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p class="section-kicker !text-cedar-700">From Cedar Mountain</p>
+          <h2 class="mt-2 text-2xl font-bold text-[#102b15]">Insights &amp; updates</h2>
+        </div>
+        {articles.length > 0 && (
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-end">
+            <label class="text-sm font-semibold text-[#35503f]">
+              Search
+              <input
+                id="insight-search"
+                type="search"
+                placeholder="Search insights"
+                class="mt-1 block min-h-11 w-full border border-[#cbd8cc] bg-white px-3 text-base text-[#1d2f1f] placeholder:text-[#66766a] focus:border-cedar-700 focus:outline-none focus:ring-2 focus:ring-cedar-200 sm:w-56"
+              />
+            </label>
+            <label class="text-sm font-semibold text-[#35503f]">
+              Topic
+              <select
+                id="insight-category"
+                class="mt-1 block min-h-11 w-full border border-[#cbd8cc] bg-white px-3 text-base text-[#1d2f1f] focus:border-cedar-700 focus:outline-none focus:ring-2 focus:ring-cedar-200 sm:w-52"
+              >
+                <option value="all">All topics</option>
+                {categories.map((category) => <option value={category}>{category}</option>)}
+              </select>
+            </label>
+          </div>
+        )}
+      </div>
+
+      {articles.length > 0 ? (
+        <>
+          <div id="insight-list" class="grid gap-x-8 gap-y-10 md:grid-cols-2">
+            {articles.map((article) => (
+              <article
+                class="insight-entry border-b border-[#dfe7df] pb-8"
+                data-insight-entry
+                data-category={article.data.category}
+                data-search={`${article.data.title} ${article.data.excerpt} ${article.data.category}`.toLowerCase()}
+              >
+                {article.data.featuredImage && (
+                  <img src={article.data.featuredImage} alt="" class="mb-5 aspect-[16/9] w-full object-cover" />
+                )}
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-semibold uppercase tracking-[0.1em] text-cedar-700">
+                  <span>{article.data.category}</span>
+                  <span aria-hidden="true" class="h-1 w-1 rounded-full bg-[#7c927f]"></span>
+                  <time datetime={article.data.pubDate.toISOString()}>
+                    {article.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </time>
+                </div>
+                <h3 class="mt-3 text-xl font-bold leading-snug text-[#102b15]">
+                  <a href={`/thought-leadership/${article.id}`} class="hover:text-cedar-700 focus:outline-none focus-visible:underline">
+                    {article.data.title}
+                  </a>
+                </h3>
+                <p class="mt-3 leading-7 text-[#435448]">{article.data.excerpt}</p>
+                <a href={`/thought-leadership/${article.id}`} class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-cedar-800 hover:text-cedar-600">
+                  Read article <span aria-hidden="true">→</span>
+                </a>
+              </article>
+            ))}
+          </div>
+          <p id="insight-empty-results" class="hidden py-12 text-center text-[#435448]">No articles match those filters.</p>
+        </>
+      ) : (
+        <div class="border-l-4 border-cedar-500 bg-white px-6 py-8 md:px-8">
+          <h3 class="text-xl font-bold text-[#102b15]">New perspectives are on the way</h3>
+          <p class="mt-2 max-w-2xl leading-7 text-[#435448]">
+            Our team is preparing practical commentary on regulatory developments and compliance topics for investment advisers and private fund managers.
+          </p>
+          <a href="/contact" class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-cedar-800 hover:text-cedar-600">
+            Contact our team <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const search = document.querySelector<HTMLInputElement>('#insight-search');
+  const category = document.querySelector<HTMLSelectElement>('#insight-category');
+  const entries = [...document.querySelectorAll<HTMLElement>('[data-insight-entry]')];
+  const emptyResults = document.querySelector<HTMLElement>('#insight-empty-results');
+
+  const filterEntries = () => {
+    const query = search?.value.trim().toLowerCase() ?? '';
+    const selectedCategory = category?.value ?? 'all';
+    let visibleCount = 0;
+
+    entries.forEach((entry) => {
+      const matchesQuery = entry.dataset.search?.includes(query) ?? false;
+      const matchesCategory = selectedCategory === 'all' || entry.dataset.category === selectedCategory;
+      const isVisible = matchesQuery && matchesCategory;
+      entry.hidden = !isVisible;
+      if (isVisible) visibleCount += 1;
+    });
+
+    emptyResults?.classList.toggle('hidden', visibleCount > 0);
+  };
+
+  search?.addEventListener('input', filterEntries);
+  category?.addEventListener('change', filterEntries);
+</script>

@@ -1,0 +1,45 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('thoughtLeadership');
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+---
+
+<Layout title={article.data.title} description={article.data.excerpt}>
+  <article class="mx-auto max-w-4xl px-6 py-12 md:py-16">
+    <a href="/thought-leadership" class="text-sm font-semibold text-cedar-800 hover:text-cedar-600">
+      <span aria-hidden="true">←</span> Thought Leadership
+    </a>
+    <header class="mt-8 border-b border-[#dfe7df] pb-8">
+      <p class="section-kicker !text-cedar-700">{article.data.category}</p>
+      <h1 class="mt-3 text-3xl font-bold leading-tight text-[#102b15] md:text-5xl">{article.data.title}</h1>
+      <time class="mt-4 block text-sm text-[#5a6d5d]" datetime={article.data.pubDate.toISOString()}>
+        {article.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </time>
+      <p class="mt-5 max-w-3xl text-lg leading-8 text-[#435448]">{article.data.excerpt}</p>
+    </header>
+
+    {article.data.featuredImage && (
+      <img src={article.data.featuredImage} alt="" class="mt-8 aspect-[16/9] w-full object-cover" />
+    )}
+
+    <div class="prose prose-lg mt-8 max-w-none text-[#233a2b] prose-headings:text-[#102b15] prose-a:text-cedar-700 prose-strong:text-[#102b15]">
+      <Content />
+    </div>
+
+    {article.data.externalUrl && (
+      <a href={article.data.externalUrl} target="_blank" rel="noreferrer" class="mt-8 inline-flex items-center gap-2 font-semibold text-cedar-800 hover:text-cedar-600">
+        View related resource <span aria-hidden="true">↗</span>
+      </a>
+    )}
+  </article>
+</Layout>

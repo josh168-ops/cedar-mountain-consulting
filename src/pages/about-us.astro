@@ -3,19 +3,56 @@ import { getEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 
 const page = await getEntry('pages', 'about-us');
-const { Content } = await page.render();
 ---
 
 <Layout title={page.data.title} description={page.data.description}>
-  <div class="bg-cedar-800 text-white py-16">
-    <div class="max-w-6xl mx-auto px-6">
-      <h1 class="text-4xl font-bold">{page.data.title}</h1>
+  <div
+    class="flex min-h-[265px] items-end bg-cover bg-center text-white"
+    style="background-image: url('/images/81135788.jpg');"
+  >
+    <div class="mx-auto w-[680px] max-w-full pb-[61.6px]">
+      <h1 class="h-[61.8px] pb-[15px] text-[35px] font-bold leading-[42px] text-white">{page.data.title}</h1>
     </div>
   </div>
 
-  <div class="max-w-6xl mx-auto px-6 py-16">
-    <div class="max-w-3xl prose prose-gray prose-headings:font-bold prose-headings:text-gray-900 prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-strong:text-gray-800 prose-p:text-gray-600 prose-p:leading-relaxed">
-      <Content />
+  <div class="inner-page-body">
+    <div class="inner-page-content">
+      <div class="prose">
+        <h2>Our Story</h2>
+        <p>
+          Cedar Mountain Consulting was founded to fill a gap in the compliance consulting industry. Too often, consultants lacked practical experience, regulatory depth, or a real understanding of fund structures and business strategy. We built the consulting firm we wished had existed.
+        </p>
+        <hr class="my-0 mb-[12.2px] border-gray-300" />
+        <div class="grid grid-cols-1 gap-[30px] md:grid-cols-2">
+          <div>
+            <h2>Our Values</h2>
+            <div class="space-y-5">
+              <p><strong>Accountability:</strong> We treat your business like it is our own - with urgency, ownership, and care.</p>
+              <p><strong>Clarity Over Complexity:</strong> We translate complex regulations into clear, actionable insights.</p>
+              <p><strong>High-Touch Service:</strong> We prioritize trust, responsiveness, and long-term relationships.</p>
+              <p><strong>Strategic Alignment:</strong> We think beyond checklists to align compliance with your business goals.</p>
+            </div>
+          </div>
+          <div>
+            <h2>Why We Are Different</h2>
+            <div class="space-y-5">
+              <p><strong>Hands-On Execution:</strong> From drafting policies to prepping for an SEC exam, we help implement what we recommend.</p>
+              <p><strong>Regulatory Depth:</strong> Our team brings decades of in-house and regulatory experience. We understand how regulations are applied in practice.</p>
+              <p><strong>Senior-Led Support:</strong> Every client works directly with experienced senior consultants.</p>
+              <p><strong>Tailored and Embedded:</strong> We do not just deliver templates - we build compliance programs that make sense for your operations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-cedar-50 border-t border-cedar-100 py-16">
+    <div class="mx-auto max-w-6xl px-6 text-center">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Meet the team behind the work</h2>
+      <a href="/our-leadership-team" class="bg-cedar-800 text-white font-semibold px-8 py-3 rounded hover:bg-cedar-700 transition-colors inline-block">
+        Our Leadership Team
+      </a>
     </div>
   </div>
 </Layout>

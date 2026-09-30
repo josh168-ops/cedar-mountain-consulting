@@ -1,26 +1,86 @@
 ---
-import { getEntry } from 'astro:content';
+import { getEntry, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 
 const page = await getEntry('pages', 'services');
-const { Content } = await page.render();
+const { Content } = await render(page);
 ---
 
 <Layout title={page.data.title} description={page.data.description}>
-  <div class="bg-cedar-800 text-white py-16">
-    <div class="max-w-6xl mx-auto px-6">
-      <h1 class="text-4xl font-bold">{page.data.title}</h1>
-      <p class="text-cedar-100 mt-4 max-w-xl">
-        Comprehensive compliance support for private fund managers, BDCs, and multi-family offices.
-      </p>
-    </div>
-  </div>
+  <section class="relative overflow-hidden bg-[#102b15]">
+    <img src="/images/services-hero.png" alt="Cedar Mountain Consulting services" class="absolute inset-0 h-full w-full object-cover opacity-70" />
+    <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,43,21,0.78),rgba(16,43,21,0.62),rgba(16,43,21,0.45))]"></div>
 
-  <div class="max-w-6xl mx-auto px-6 py-16">
-    <div class="max-w-3xl prose prose-gray prose-headings:font-bold prose-headings:text-gray-900 prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-gray-200 prose-h2:pb-3 prose-p:text-gray-600 prose-p:leading-relaxed">
-      <Content />
+    <div class="relative mx-auto max-w-7xl px-6 py-20 lg:py-24">
+      <div class="max-w-2xl">
+        <p class="section-kicker">Compliance support</p>
+        <h1 class="mt-5 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">{page.data.title}</h1>
+        <p class="mt-6 max-w-xl text-lg leading-8 text-white/80">
+          We help investment advisers and fund managers build practical, durable compliance programs that support growth and reduce risk.
+        </p>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <section id="what-we-do" class="scroll-mt-24 bg-[#f1f7f1] py-20">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="mb-12 text-center">
+        <p class="section-kicker !text-cedar-700">What We Do</p>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight text-[#102b15] md:text-4xl">Our Core Services</h2>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        <article class="service-card">
+          <div class="service-icon">01</div>
+          <h3>Compliance Program Support</h3>
+          <p>Practical, scalable compliance frameworks that keep your firm aligned with regulatory expectations while supporting growth.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon">02</div>
+          <h3>Outsourced CCO Services</h3>
+          <p>Experienced compliance leadership for firms that need seasoned guidance without the overhead of a full-time executive.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon">03</div>
+          <h3>SEC Exam Support</h3>
+          <p>Focused preparation, remediation, and response support to help firms navigate regulatory examinations with confidence.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-14 md:py-18">
+    <div class="mx-auto max-w-7xl px-6">
+      <nav aria-label="Service offerings" class="mb-10 flex flex-wrap gap-x-7 gap-y-2 border-b border-[#dfe7df] pb-5">
+        <a href="#adviser-registration-and-compliance-program-setup" class="border-b-2 border-transparent py-2 text-sm font-bold uppercase text-cedar-800 hover:border-cedar-500">
+          Adviser Registration &amp; Setup
+        </a>
+        <a href="#ongoing-compliance-support" class="border-b-2 border-transparent py-2 text-sm font-bold uppercase text-cedar-800 hover:border-cedar-500">
+          Ongoing Support
+        </a>
+        <a href="#specialized-compliance-support" class="border-b-2 border-transparent py-2 text-sm font-bold uppercase text-cedar-800 hover:border-cedar-500">
+          Specialized Support
+        </a>
+      </nav>
+
+      <div class="service-offerings prose prose-lg max-w-none text-[#233a2b] prose-headings:text-[#102b15] prose-p:text-base prose-p:leading-8 prose-li:text-base prose-li:leading-7 prose-strong:text-[#102b15]">
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f1f7f1] py-14 md:py-18">
+    <div class="mx-auto grid max-w-7xl items-center gap-8 px-6 md:grid-cols-[0.8fr_1.2fr] md:gap-12">
+      <img src="/images/services-meeting.jpg" alt="A professional presenting sales information beside a monitor in a boardroom" class="aspect-square w-full object-cover object-left" />
+      <div class="py-2">
+        <p class="section-kicker !text-cedar-700">Experienced leadership</p>
+        <h2 class="mt-4 text-2xl font-bold text-[#102b15] md:text-3xl">Practical, senior-level guidance.</h2>
+        <p class="mt-4 max-w-2xl text-base leading-7 text-[#35503f]">
+          We work alongside firms that need clear regulatory direction, strong operational controls, and a compliance partner who understands the realities of running a fund or adviser business.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <div class="bg-cedar-50 border-t border-cedar-100 py-16">
     <div class="max-w-6xl mx-auto px-6 text-center">
@@ -31,3 +91,34 @@ const { Content } = await page.render();
     </div>
   </div>
 </Layout>
+
+<style>
+  .service-offerings :global(h2) {
+    margin: 3rem 0 1.25rem;
+    border-top: 1px solid #dfe7df;
+    padding-top: 1.5rem;
+    font-size: 1.65rem;
+    scroll-margin-top: 6rem;
+  }
+
+  .service-offerings :global(p:first-child) {
+    margin: 0 0 1.5rem;
+    font-size: 1.125rem;
+  }
+
+  .service-offerings :global(h2 + ul) {
+    columns: 2;
+    column-gap: 3rem;
+  }
+
+  .service-offerings :global(li) {
+    break-inside: avoid;
+    padding-left: 0.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .service-offerings :global(h2 + ul) {
+      columns: 1;
+    }
+  }
+</style>

@@ -1,22 +1,38 @@
 ---
-title: "Services"
-description: "Compliance consulting services for private fund managers, BDCs, and multi-family offices."
+title: "Our Services"
+description: "Compliance support for registered investment advisers and exempt reporting advisers."
 ---
 
-## Compliance Program Support
+We provide compliance support for registered investment advisers and exempt reporting advisers.
 
-We develop and maintain compliance infrastructures for private fund managers, business development companies, and multi-family offices. Our work includes policy development, annual reviews, risk assessments, monitoring systems, training, regulatory updates, and marketing material reviews.
+## Adviser Registration and Compliance Program Setup
 
-Our team also addresses cybersecurity and data privacy policies and advises on valuation, allocation, and conflicts. We bring special expertise in digital assets and tokenized funds, covering disclosure design and risk controls.
+- Prepare Form ADV and related filings, including Form U-4 as applicable.
+- Provide guidance on regulatory requests and IAR licensing.
+- Prepare a Compliance Manual.
+- Assist with policy and procedure implementation.
+- Provide guidance on service providers.
+- Assist with cybersecurity policies.
+- Provide initial firm-wide Advisers Act training.
 
-## Outsourced CCO Services
+## Ongoing Compliance Support
 
-We provide senior-level leadership for compliance programs with dedicated team support. Our team oversees the day-to-day execution of compliance programs through a full-service approach — giving you experienced leadership without the overhead of a full-time hire.
+- Develop and enhance compliance infrastructure.
+- Conduct annual reviews of compliance programs.
+- Monitor personal trading.
+- Provide firm-wide compliance training.
+- Provide regulatory updates, consultation, and advice.
+- Conduct in-depth reviews of marketing materials.
+- Support regulatory filings, including Forms ADV, PF, and 13F.
+- Provide SEC exam support.
 
-## SEC Exam Support
+## Specialized Compliance Support
 
-We prepare clients for regulatory examinations using mock audits, gap assessments, and document readiness planning. Our team identifies business-model risks and provides strategic support during exams, including response coordination and remediation assistance. We bring direct experience with custody, valuation, and investor disclosure matters.
-
-## Adviser and Fund Launch Services
-
-We support investment advisers and exempt reporting advisers throughout establishment. Services include Form ADV preparation, customized compliance policies, staff onboarding training, operational design, third-party service provider evaluation, and investor due diligence readiness.
+- Outsourced Chief Compliance Officer services.
+- NFA/CFTC Compliance Program setup and ongoing support.
+- Strategic SEC exam support.
+- SEC mock audits.
+- Operational and compliance diligence.
+- Fund launch services.
+- Tailored emerging manager compliance support.
+- Post-acquisition compliance program review.

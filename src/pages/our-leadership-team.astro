@@ -1,48 +1,112 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 
 const members = (await getCollection('team')).sort(
   (a, b) => a.data.order - b.data.order
 );
+
+const portraitById: Record<string, string> = {
+  '01-meher-haider': '/images/img-3818-1-5-modified.png',
+  '02-larry-cowen': '/images/cowen-larry-modified.png',
+  '03-lucy-yang': '/images/yang-lucy-1-modified.png',
+  '04-julia-braithwaite': '/images/julia-braithwaite-2026_orig.png',
+  '05-victoria-gaeta': '/images/victoria-gaeta-2026-v2_orig.png',
+  '06-josh-avins': '/images/josh-avins-2026_orig.png',
+};
+
+const memberEmailById: Record<string, string> = {
+  '01-meher-haider': 'meher@cedarmountainconsulting.com',
+  '02-larry-cowen': 'larry@cedarmountainconsulting.com',
+};
+
+const memberLinkedInById: Record<string, string> = {
+  '01-meher-haider': 'https://www.linkedin.com/in/meherhaider/',
+  '02-larry-cowen': 'https://www.linkedin.com/in/lawrencecowen/',
+  '03-lucy-yang': 'https://www.linkedin.com/in/lucy-yang-950313/',
+  '04-julia-braithwaite': 'https://www.linkedin.com/in/julia-braithwaite-b030421/',
+  '05-victoria-gaeta': 'https://www.linkedin.com/in/victoria-gaeta-4482a1160/',
+  '06-josh-avins': 'https://www.linkedin.com/in/josh-avins-ph-d-38306a11/',
+};
 ---
 
 <Layout title="Our Leadership Team" description="Meet the experienced team behind Cedar Mountain Consulting.">
-  <div class="bg-cedar-800 text-white py-16">
-    <div class="max-w-6xl mx-auto px-6">
-      <h1 class="text-4xl font-bold">Our Leadership Team</h1>
-      <p class="text-cedar-100 mt-4 max-w-xl">
-        Our team brings decades of in-house and regulatory experience across private funds, investment management, and financial services law.
-      </p>
+  <div
+    class="flex min-h-[265px] items-end bg-cover bg-center text-white"
+    style="background-image: url('/images/81135788.jpg');"
+    >
+      <div class="mx-auto w-[680px] max-w-full pb-[61.6px]">
+        <h1 class="h-[61.8px] pb-[15px] text-[35px] font-bold leading-[42px] text-white">Our Leadership Team</h1>
     </div>
   </div>
 
-  <div class="max-w-6xl mx-auto px-6 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <div class="inner-page-body">
+  <div class="inner-page-content leadership-content">
+    <p class="mx-auto mb-8 max-w-3xl text-center text-lg leading-8 text-[#35503f]">
+      We combine our legal backgrounds with years of in-house experience to provide practical compliance solutions for our clients
+    </p>
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {members.map(async (member) => {
-        const { Content } = await member.render();
+        const { Content } = await render(member);
         return (
-          <div class="border border-gray-200 rounded-lg p-6 hover:border-cedar-300 transition-colors">
-            <div class="mb-4">
-              <h2 class="text-xl font-bold text-gray-900">{member.data.name}</h2>
-              <p class="text-cedar-700 font-medium text-sm mt-0.5">{member.data.title}</p>
-            </div>
-            <div class="prose prose-sm prose-gray prose-p:text-gray-600 prose-p:leading-relaxed">
-              <Content />
-            </div>
-            {member.data.education && (
-              <p class="mt-4 text-xs text-gray-500 leading-relaxed">
-                <span class="font-medium text-gray-700">Education: </span>{member.data.education}
-              </p>
-            )}
-            {member.data.languages && (
-              <p class="mt-1 text-xs text-gray-500">
-                <span class="font-medium text-gray-700">Languages: </span>{member.data.languages}
-              </p>
-            )}
-          </div>
+          <article class="leadership-card">
+            <button type="button" class="leadership-card-trigger" data-dialog-target={`bio-${member.id}`} aria-haspopup="dialog">
+              <img
+                src={portraitById[member.id]}
+                alt={member.data.name}
+                class="leadership-card-portrait"
+              />
+              <span class="leadership-card-copy">
+                <span class="leadership-card-name">{member.data.name}</span>
+                <span class="leadership-card-title">{member.data.title}</span>
+                <span class="leadership-card-action">View bio <span aria-hidden="true">↗</span></span>
+              </span>
+            </button>
+            <dialog id={`bio-${member.id}`} class="leadership-dialog">
+              <div class="leadership-dialog-inner">
+                <button type="button" class="leadership-dialog-close" data-dialog-close aria-label={`Close ${member.data.name} bio`}>×</button>
+                <div class="leadership-dialog-heading">
+                  <img src={portraitById[member.id]} alt="" class="leadership-dialog-portrait" />
+                  <div>
+                    <h2>{member.data.name}</h2>
+                    <p>{member.data.title}</p>
+                  </div>
+                </div>
+                <div class="prose prose-sm">
+                  <Content />
+                </div>
+                {member.data.education && (
+                  <p class="leadership-detail"><strong>Education:</strong> {member.data.education}</p>
+                )}
+                {member.data.languages && (
+                  <p class="leadership-detail"><strong>Languages:</strong> {member.data.languages}</p>
+                )}
+                {memberLinkedInById[member.id] && (
+                  <a href={memberLinkedInById[member.id]} target="_blank" rel="noreferrer" class="leadership-linkedin">
+                    View {member.data.name} on LinkedIn <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+              </div>
+            </dialog>
+          </article>
         );
       })}
     </div>
   </div>
+  </div>
 </Layout>
+
+<script>
+  const triggers = document.querySelectorAll<HTMLButtonElement>('[data-dialog-target]');
+
+  triggers.forEach((trigger) => {
+    const dialog = document.getElementById(trigger.dataset.dialogTarget ?? '') as HTMLDialogElement | null;
+    if (!dialog) return;
+
+    trigger.addEventListener('click', () => dialog.showModal());
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.querySelector('[data-dialog-close]')?.addEventListener('click', () => dialog.close());
+  });
+</script>

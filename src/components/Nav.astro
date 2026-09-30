@@ -1,66 +1,82 @@
 ---
 const navLinks = [
   { href: '/',                    label: 'Home' },
-  { href: '/about-us',            label: 'About Us' },
-  { href: '/our-leadership-team', label: 'Our Leadership Team' },
-  { href: '/services',            label: 'Services' },
+  { href: '/about-us',            label: 'About Us', children: [{ href: '/our-leadership-team', label: 'Our Leadership Team' }] },
+  { href: '/services',            label: 'SERVICES' },
+  { href: '/thought-leadership',  label: 'Research and Perspectives' },
   { href: '/contact',             label: 'Contact' },
 ];
 
 const current = Astro.url.pathname;
 ---
 
-<header class="bg-white border-b border-gray-100 sticky top-0 z-50">
-  <nav class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-    <!-- Logo -->
-    <a href="/" class="flex items-center gap-2 shrink-0">
-      <span class="text-cedar-800 font-semibold text-lg tracking-tight">Cedar Mountain Consulting</span>
+<header id="site-header" class="site-header relative z-50 bg-white">
+  <nav class="site-header-inner relative mx-auto flex min-h-28 w-full max-w-7xl items-center justify-between gap-5 px-6 md:min-h-36">
+    <a href="/" class="flex shrink-0 items-center" aria-label="Cedar Mountain Consulting home">
+      <img
+        src="/images/logo-top.svg"
+        alt="Cedar Mountain Consulting"
+        class="site-header-logo h-auto w-[230px] max-w-full md:w-[420px]"
+      />
     </a>
 
-    <!-- Desktop links -->
-    <ul class="hidden md:flex items-center gap-6">
-      {navLinks.map(({ href, label }) => (
-        <li>
-          <a
-            href={href}
-            class={`text-sm font-medium transition-colors ${
-              current === href || (href !== '/' && current.startsWith(href))
-                ? 'text-cedar-800'
-                : 'text-gray-600 hover:text-cedar-800'
-            }`}
-          >
-            {label}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <div class="relative flex items-center gap-5">
+      <a href="/contact" class="hidden text-sm font-semibold uppercase tracking-[0.12em] text-cedar-800 transition-colors hover:text-cedar-600 sm:inline-block">
+        Contact Us
+      </a>
+      <button
+        id="menu-toggle"
+        class="flex items-center gap-3 border-0 bg-transparent text-2xl text-black"
+        aria-label="Toggle menu"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <span class="flex flex-col gap-1" aria-hidden="true">
+          <span class="h-1 w-10 bg-black"></span>
+          <span class="h-1 w-10 bg-black"></span>
+          <span class="h-1 w-10 bg-black"></span>
+        </span>
+        <span class="font-sans text-xl lowercase">menu</span>
+      </button>
 
-    <!-- Mobile hamburger -->
-    <button
-      id="menu-toggle"
-      class="md:hidden p-2 text-gray-600 hover:text-cedar-800"
-      aria-label="Toggle menu"
-    >
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
+      <div id="mobile-menu" class="absolute right-0 top-full hidden w-[min(22rem,calc(100vw-2rem))] border border-gray-200 bg-white shadow-[0_16px_35px_rgba(16,43,21,0.14)]">
+        <ul class="flex flex-col gap-1 p-5">
+          {navLinks.map(({ href, label, children }) => (
+            <li>
+              <a href={href} class={`block px-3 py-2 text-sm font-medium ${current === href || (href !== '/' && current.startsWith(href)) ? 'text-cedar-800' : 'text-gray-700 hover:bg-cedar-50 hover:text-cedar-800'}`}>{label}</a>
+              {children && (
+                <ul class="mt-2 border-l border-cedar-200 pl-4">
+                  {children.map((child) => (
+                    <li><a href={child.href} class="block py-1 text-sm text-gray-600 hover:text-cedar-800">{child.label}</a></li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+          <li class="sm:hidden"><a href="/contact" class="block px-3 py-2 text-sm font-semibold text-cedar-800 hover:bg-cedar-50">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
-
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white">
-    <ul class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
-      {navLinks.map(({ href, label }) => (
-        <li>
-          <a href={href} class="block text-sm font-medium text-gray-700 hover:text-cedar-800">{label}</a>
-        </li>
-      ))}
-    </ul>
-  </div>
 </header>
 
 <script>
+  const header = document.getElementById('site-header');
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
-  toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+  let isScrolled = false;
+  const updateHeader = () => {
+    const nextState = isScrolled ? window.scrollY > 8 : window.scrollY > 80;
+    if (nextState === isScrolled) return;
+
+    isScrolled = nextState;
+    header?.classList.toggle('is-scrolled', isScrolled);
+  };
+
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
 </script>

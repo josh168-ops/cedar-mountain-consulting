@@ -1,6 +1,7 @@
 ---
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import '../styles/global.css';
 
 interface Props {
   title: string;
@@ -19,7 +20,7 @@ const { title, description = 'Cedar Mountain Consulting — Compliance solutions
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600&family=Merriweather:wght@400;700&family=Montserrat:wght@400;600&family=Roboto+Slab:wght@400&display=swap" rel="stylesheet" />
     <!-- Netlify Identity Widget (for Decap CMS login redirect) -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>

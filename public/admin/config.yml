@@ -71,3 +71,20 @@ collections:
       - { label: Education, name: education, widget: string, required: false }
       - { label: Languages, name: languages, widget: string, required: false }
       - { label: Bio, name: body, widget: markdown }
+
+  - name: thought-leadership
+    label: Thought Leadership
+    folder: src/content/thought-leadership
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Publication Date, name: pubDate, widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+      - label: Category
+        name: category
+        widget: select
+        options: [Regulatory Updates, Compliance Insights, Webinars & Events, Firm News]
+      - { label: Summary, name: excerpt, widget: text }
+      - { label: Featured Image, name: featuredImage, widget: image, required: false }
+      - { label: External Resource URL, name: externalUrl, widget: string, required: false }
+      - { label: Article, name: body, widget: markdown }

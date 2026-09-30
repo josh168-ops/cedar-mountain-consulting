@@ -5,7 +5,7 @@ description: "Tailored, outcome-driven compliance solutions for private fund man
 
 ## Compliance Built for Your Business
 
-Cedar Mountain Consulting is a compliance consulting firm that provides tailored, outcome-driven compliance solutions for private fund managers, business development companies, and multi-family offices.
+Cedar Mountain Consulting is a compliance consulting firm that provides tailored, outcome-driven compliance solutions for investment advisers, including private fund managers, business development companies, and multi-family offices.
 
 We combine regulatory expertise with practical implementation to help clients anticipate regulatory requirements and establish sustainable compliance frameworks.
 
