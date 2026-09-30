@@ -37,6 +37,7 @@ html {
 }
 
 .site-header-logo {
+  width: min(230px, calc(100vw - 180px));
   transition: width 220ms ease;
 }
 
@@ -45,7 +46,7 @@ html {
 }
 
 .site-header.is-scrolled .site-header-logo {
-  width: 190px;
+  width: min(190px, calc(100vw - 180px));
 }
 
 @media (min-width: 768px) {
