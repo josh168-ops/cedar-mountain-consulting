@@ -8,17 +8,17 @@ const { Content } = await render(page);
 
 <Layout title={page.data.title} description={page.data.description}>
   <section class="relative overflow-hidden bg-[#102b15]">
-    <img src="/images/services-hero.png" alt="Cedar Mountain Consulting services" class="absolute inset-0 h-full w-full object-cover opacity-70" />
+    <img src="/images/hero-background.jpg" alt="Mountain landscape" class="absolute inset-0 h-full w-full object-cover opacity-70" />
     <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,43,21,0.78),rgba(16,43,21,0.62),rgba(16,43,21,0.45))]"></div>
 
     <div class="relative mx-auto max-w-7xl px-6 py-20 lg:py-24">
       <div class="max-w-2xl">
         <h1 class="mt-5 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">{page.data.title}</h1>
         <p class="mt-6 max-w-xl text-lg leading-8 text-white/80">
-          We help investment advisers and fund managers build practical, durable compliance programs that support growth and reduce risk.
+          We help investment advisers and fund managers build practical, durable compliance programs that support growth and reduce risk. Our work includes private wealth and separately managed account (SMA) advisers and multi-family offices.
         </p>
-        <a href="/contact" class="brand-button mt-8 inline-flex items-center justify-center border border-white/50 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-[#102b15] transition hover:bg-cedar-100">
-          Discuss your needs
+        <a href="/contact" class="brand-button mt-8 inline-flex items-center justify-center rounded-full border border-white/40 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-[#102b15] transition hover:bg-cedar-100">
+          Contact Us
         </a>
       </div>
     </div>
@@ -36,19 +36,19 @@ const { Content } = await render(page);
           <a href="#adviser-registration-and-compliance-program-setup" class="service-icon no-underline transition-colors hover:bg-cedar-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cedar-700" aria-label="01: Adviser Registration and Compliance Program Setup">01</a>
           <h3>Adviser Registration and Compliance Program Setup</h3>
           <p>Registration filings, compliance manuals, policy implementation, service-provider guidance, cybersecurity, and initial firm-wide training.</p>
-          <a href="#adviser-registration-and-compliance-program-setup" class="service-card-link">Explore support <span aria-hidden="true">→</span></a>
+          <a href="#adviser-registration-and-compliance-program-setup" class="service-card-link">Explore Our Services <span aria-hidden="true">→</span></a>
         </article>
         <article class="service-card">
           <a href="#ongoing-compliance-support" class="service-icon no-underline transition-colors hover:bg-cedar-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cedar-700" aria-label="02: Ongoing Compliance Support">02</a>
           <h3>Ongoing Compliance Support</h3>
           <p>Annual reviews, personal-trading monitoring, training, regulatory advice, marketing-material reviews, filings, and SEC exam support.</p>
-          <a href="#ongoing-compliance-support" class="service-card-link">Explore support <span aria-hidden="true">→</span></a>
+          <a href="#ongoing-compliance-support" class="service-card-link">Explore Our Services <span aria-hidden="true">→</span></a>
         </article>
         <article class="service-card">
           <a href="#specialized-compliance-support" class="service-icon no-underline transition-colors hover:bg-cedar-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cedar-700" aria-label="03: Specialized Compliance Support">03</a>
           <h3>Specialized Compliance Support</h3>
           <p>Outsourced CCO services, NFA/CFTC compliance, mock exams, diligence, fund launches, emerging-manager support, and post-acquisition reviews.</p>
-          <a href="#specialized-compliance-support" class="service-card-link">Explore support <span aria-hidden="true">→</span></a>
+          <a href="#specialized-compliance-support" class="service-card-link">Explore Our Services <span aria-hidden="true">→</span></a>
         </article>
       </div>
     </div>
@@ -71,6 +71,14 @@ const { Content } = await render(page);
       <div class="service-offerings prose prose-lg max-w-none text-[#233a2b] prose-headings:text-[#102b15] prose-p:text-base prose-p:leading-8 prose-li:text-base prose-li:leading-7 prose-strong:text-[#102b15]">
         <Content />
       </div>
+
+      <div class="mt-12 max-w-4xl border-t border-[#dfe7df] pt-7">
+        <p class="section-kicker !text-cedar-700">Specialized Compliance Support</p>
+        <h2 class="mt-2 text-xl font-bold text-[#102b15]">Technology-Agnostic Compliance Solutions</h2>
+        <p class="mt-3 text-base leading-7 text-[#35503f]">
+          Cedar Mountain is technology-agnostic and works with leading compliance technology providers. Our senior professionals preview platform options with clients, help evaluate functionality and fit, and provide independent guidance in selecting the solution that best supports each client’s compliance program and business needs.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -90,7 +98,7 @@ const { Content } = await render(page);
   <div class="bg-cedar-50 border-t border-cedar-100 py-16">
     <div class="max-w-6xl mx-auto px-6 text-center">
       <h2 class="text-2xl font-bold text-gray-900 mb-4">Ready to work together?</h2>
-      <a href="/contact" class="bg-cedar-800 text-white font-semibold px-8 py-3 rounded hover:bg-cedar-700 transition-colors inline-block">
+      <a href="/contact" class="brand-button inline-flex items-center justify-center rounded-full bg-[#102b15] px-7 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-[#1a3822]">
         Contact Us
       </a>
     </div>

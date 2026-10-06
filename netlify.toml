@@ -31,3 +31,15 @@
   from = "/terms-of-use.html"
   to = "/terms-of-use/"
   status = 301
+
+[[redirects]]
+  from = "/thought-leadership"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/thought-leadership/*"
+  to = "/"
+  status = 302
+  force = true

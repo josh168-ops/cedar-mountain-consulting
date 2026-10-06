@@ -1,9 +1,9 @@
 ---
 title: "Our Services"
-description: "Compliance support for registered investment advisers and exempt reporting advisers."
+description: "Compliance support for investment advisers, private fund managers, and private wealth and SMA advisers."
 ---
 
-We provide compliance support for registered investment advisers and exempt reporting advisers.
+We support registered investment advisers, exempt reporting advisers, and private fund managers. Our work also includes private wealth and separately managed account (SMA) advisers and multi-family offices.
 
 ## Adviser Registration and Compliance Program Setup
 
@@ -19,10 +19,11 @@ We provide compliance support for registered investment advisers and exempt repo
 
 - Develop and enhance compliance infrastructure.
 - Conduct annual reviews of compliance programs.
+- Code of Ethics Administration & Reviews.
 - Monitor personal trading.
 - Provide firm-wide compliance training.
 - Provide regulatory updates, consultation, and advice.
-- Conduct in-depth reviews of marketing materials.
+- Marketing & Advertising Reviews.
 - Support regulatory filings, including Forms ADV, PF, and 13F.
 - Provide SEC exam support.
 

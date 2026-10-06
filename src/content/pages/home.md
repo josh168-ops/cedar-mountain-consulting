@@ -1,18 +1,19 @@
 ---
 title: "Cedar Mountain Consulting"
-description: "Tailored, outcome-driven compliance solutions for private fund managers, business development companies, and multi-family offices."
+description: "Tailored compliance solutions for investment advisers, private fund managers, business development companies, and private wealth and SMA advisers."
 ---
 
 ## Compliance Built for Your Business
 
-Cedar Mountain Consulting is a compliance consulting firm that provides tailored, outcome-driven compliance solutions for investment advisers, including private fund managers, business development companies, and multi-family offices.
+Cedar Mountain Consulting provides tailored, outcome-driven compliance solutions for investment advisers, private fund managers, business development companies, private wealth and separately managed account (SMA) advisers, and multi-family offices.
 
 We combine regulatory expertise with practical implementation to help clients anticipate regulatory requirements and establish sustainable compliance frameworks.
 
 ## Who We Serve
 
-- Private Funds
+- Private Fund Managers
 - Business Development Companies
+- Private Wealth and SMA Advisers
 - Multi-Family Offices
 
 ## What We Do
