@@ -3,7 +3,7 @@ title: "Our Services"
 description: "Compliance support for investment advisers, private fund managers, and private wealth and SMA advisers."
 ---
 
-We support registered investment advisers, exempt reporting advisers, and private fund managers. Our work also includes private wealth and separately managed account (SMA) advisers and multi-family offices.
+Cedar Mountain Consulting provides practical, comprehensive compliance support for investment advisers, private fund managers, business development companies, and private wealth managers. Our services span registration and compliance program setup, ongoing support, and specialized services, including outsourced CCO support.
 
 ## Adviser Registration and Compliance Program Setup
 
