@@ -260,6 +260,7 @@ html {
   aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center top;
+  border-radius: 24px 24px 0 0;
   transition: filter 180ms ease;
 }
 
@@ -360,6 +361,7 @@ html {
   width: 88px;
   height: 88px;
   object-fit: cover;
+  object-position: center top;
 }
 
 .leadership-dialog h2 {
